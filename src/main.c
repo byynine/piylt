@@ -13,8 +13,8 @@ int main(int argc, char* argv[]) {
 
     SDL_Window *window = SDL_CreateWindow(
         "An SDL3 window",
-        640,
-        480,
+        1920,
+        1200,
         SDL_WINDOW_TRANSPARENT | SDL_WINDOW_BORDERLESS | SDL_WINDOW_ALWAYS_ON_TOP
     );
 
@@ -44,12 +44,26 @@ int main(int argc, char* argv[]) {
             if (event.type == SDL_EVENT_QUIT) {
                 done = true;
             }
+            if (event.type == SDL_EVENT_MOUSE_MOTION) {
+                printf("MM: x: %.0f y: %.0f\n", event.motion.x, event.motion.y);
+                fflush(stdout);
+            }
+            if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
+                printf("MB1_DOWN\n");
+                fflush(stdout);
+            }
+            if (event.type == SDL_EVENT_MOUSE_BUTTON_UP) {
+                printf("MB1_UP\n");
+                fflush(stdout);
+            }
         }
 
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 0);
 
         SDL_RenderClear(renderer);
         SDL_RenderPresent(renderer);
+
+        SDL_Delay(1);
     }
 
     SDL_DestroyRenderer(renderer);
