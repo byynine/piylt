@@ -76,8 +76,12 @@ int main(int argc, char* argv[])
         {
             for (int i = 0; i < terminal_window.ws_row * yf; i++)
             {
-                for (int j = 0; j < terminal_window.ws_col * xf; j++) putchar(' ');
-                if ((i + 1) >= terminal_window.ws_row * yf) putchar('.');
+                for (int j = 0; j < terminal_window.ws_col * xf; j++) putchar('.');
+                if ((i + 1) > terminal_window.ws_row * yf)
+                {
+                    printf("%d", i);
+                    putchar('.');
+                }
                 putchar('\n');
             };
 
